@@ -1,4 +1,8 @@
 ---
+import { useSanityClient } from "astro-sanity";
+import Header from "../components/Header.astro";
+
+const posts = await useSanityClient().fetch(`*[_type == "post"]`);
 ---
 
 <html lang="en">
@@ -7,9 +11,16 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Riassuncthulhu</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Header />
+		{posts &&
+			<ul>
+				{posts.map( (post) => (
+					<li><a href={`post/${post.slug.current}`}>{post.title}</a></li>
+				))}
+			</ul>
+		}
 	</body>
 </html>
