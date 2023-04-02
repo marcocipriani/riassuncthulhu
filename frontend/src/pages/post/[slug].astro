@@ -1,6 +1,7 @@
 ---
 import { useSanityClient } from "astro-sanity";
-import Header from "../../components/Header.astro";
+
+import MainLayout from "../../layouts/MainLayout.astro";
 import PortableText from "../../components/PortableText.astro";
 
 export async function getStaticPaths() {
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const { title, body } = Astro.props;
 ---
 
-<Header />
-<h1>{title}</h1>
-
-<PortableText portableText={body} />
+<MainLayout title={title}>
+    <h1>{title}</h1>
+    <PortableText portableText={body} />
+</MainLayout>
