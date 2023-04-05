@@ -1,0 +1,17 @@
+---
+import { urlForImage } from "../sanity/urlForImage";
+
+const { author, img, title, preview, date, link } = Astro.props;
+---
+
+<div class="card" style="width: 18rem;">
+  <img src={urlForImage(img).url()} class="card-img-top" alt="...">
+  <div class="card-header">
+    <h5 class="card-title">{title}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{author} • <small class="text-muted">{date}</small></p>
+    <p class="card-text">{preview}</p>
+    <a href={link} class="btn btn-outline-primary">Details</a>
+  </div>
+</div>

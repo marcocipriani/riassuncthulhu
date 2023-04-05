@@ -1,17 +1,26 @@
 ---
 import { useSanityClient } from "astro-sanity";
 import MainLayout from "../layouts/MainLayout.astro";
+import Card from "../components/Card.astro";
 
 const title = "CthulhuHome"
 const posts = await useSanityClient().fetch(`*[_type == "post"]`);
 ---
 
 <MainLayout title={title}>
+	<div class="container-md">
+	
 {posts &&
-		<ul>
+		
+			<div class="row justify-content-start">
 			{posts.map( (post) => (
-				<li><a href={`post/${post.slug.current}`}>{post.title}</a></li>
-			))}
-		</ul>
+				<div class="col-md-4">
+				<Card author={post.author.name} img={post.image} title={post.title}  date={post.date} link={`post/${post.slug.current}`} />
+				</div>
+			) )
+		}
+		</div>
 }
+
+</div>
 </MainLayout>
